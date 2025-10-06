@@ -16,7 +16,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Generic Money",
   description: "Deposit and redeem gmUSD with a minimal shadcn-powered interface.",
-}; 
+  icons: {
+    icon: [
+      {
+        url: "/icons/icon.svg",
+        type: "image/svg+xml",
+      },
+    ],
+  },
+};
 
 export default function RootLayout({
   children,
