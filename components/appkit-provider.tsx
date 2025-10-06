@@ -4,11 +4,12 @@ import { createContext, useContext, useEffect, useMemo, useRef, useState } from 
 import { createAppKit, useAppKit, useAppKitAccount } from "@reown/appkit/react";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { arbitrum, mainnet } from "@reown/appkit/networks";
+import type { AppKitNetwork } from "@reown/appkit-common";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 
 const queryClient = new QueryClient();
-const networks = [mainnet, arbitrum];
+const networks: [AppKitNetwork, ...AppKitNetwork[]] = [mainnet, arbitrum];
 
 const metadata = {
   name: "Generic Money",
@@ -43,8 +44,9 @@ function AppKitBridge({ children }: { children: React.ReactNode }) {
       ready: true,
       isConnected: account.isConnected,
       address: account.address,
-      openModal: (options) =>
-        open(options?.view ? { view: options.view } : { view: defaultView }),
+      openModal: async (options) => {
+        await open(options?.view ? { view: options.view } : { view: defaultView });
+      },
     };
   }, [account.address, account.isConnected, open]);
 
