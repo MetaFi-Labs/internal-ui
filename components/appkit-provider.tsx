@@ -3,13 +3,13 @@
 import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { createAppKit, useAppKit, useAppKitAccount } from "@reown/appkit/react";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
-import { arbitrum, mainnet } from "@reown/appkit/networks";
+import { arbitrum } from "@reown/appkit/networks";
 import type { AppKitNetwork } from "@reown/appkit-common";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 
 const queryClient = new QueryClient();
-const networks: [AppKitNetwork, ...AppKitNetwork[]] = [mainnet, arbitrum];
+const networks: [AppKitNetwork, ...AppKitNetwork[]] = [arbitrum];
 
 const metadata = {
   name: "Generic Money",
